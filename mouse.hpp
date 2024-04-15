@@ -4,11 +4,10 @@
 #include <tuple>
 
 class Mouse {
-    public:
-        double sensitivity = 0.001;
-        double last_mouse_position_x = 0.0, last_mouse_position_y = 0.0;
-        std::tuple<double, double> get_yaw_pitch_deltas(double mouse_position_x, double mouse_position_y);
-        void configure_with_glfw(GLFWwindow *window);
+public:
+  double sensitivity = 0.001;
+  double last_mouse_position_x = 0.0, last_mouse_position_y = 0.0;
+  std::tuple<double, double> get_yaw_pitch_deltas(double mouse_position_x, double mouse_position_y);
 };
 
-#endif //MOUSE_HPP
+#endif // MOUSE_HPP
