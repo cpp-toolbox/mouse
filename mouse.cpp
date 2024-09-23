@@ -23,13 +23,16 @@
  */
 std::tuple<double, double> Mouse::get_yaw_pitch_deltas(double mouse_position_x, double mouse_position_y) {
 
-  double change_in_yaw_angle = this->sensitivity * (this->last_mouse_position_x - mouse_position_x);
-  double change_in_pitch_angle = this->sensitivity * (this->last_mouse_position_y - mouse_position_y);
+    double change_in_yaw_angle = this->sensitivity_scale * (this->last_mouse_position_x - mouse_position_x);
+    double change_in_pitch_angle = this->sensitivity_scale * (this->last_mouse_position_y - mouse_position_y);
 
-  std::tuple yaw_pitch_deltas = {change_in_yaw_angle, change_in_pitch_angle};
+    change_in_yaw_angle *= user_sensitivity;
+    change_in_pitch_angle *= user_sensitivity;
 
-  this->last_mouse_position_x = mouse_position_x;
-  this->last_mouse_position_y = mouse_position_y;
+    std::tuple yaw_pitch_deltas = {change_in_yaw_angle, change_in_pitch_angle};
 
-  return yaw_pitch_deltas;
+    this->last_mouse_position_x = mouse_position_x;
+    this->last_mouse_position_y = mouse_position_y;
+
+    return yaw_pitch_deltas;
 }
