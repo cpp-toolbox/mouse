@@ -1,6 +1,7 @@
 #ifndef MOUSE_HPP
 #define MOUSE_HPP
 
+#include <glm/glm.hpp>
 #include <tuple>
 
 class Mouse {
@@ -10,6 +11,7 @@ class Mouse {
     double sensitivity_scale = 0.001;
     double last_mouse_position_x = 0.0, last_mouse_position_y = 0.0;
     std::tuple<double, double> get_yaw_pitch_deltas(double mouse_position_x, double mouse_position_y);
+    glm::vec2 get_ndc_mouse_pos(unsigned int window_width, unsigned int window_height);
 };
 
 #endif // MOUSE_HPP

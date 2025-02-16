@@ -36,3 +36,8 @@ std::tuple<double, double> Mouse::get_yaw_pitch_deltas(double mouse_position_x, 
 
     return yaw_pitch_deltas;
 }
+
+glm::vec2 Mouse::get_ndc_mouse_pos(unsigned int window_width, unsigned int window_height) {
+    return {(2.0f * (float)this->last_mouse_position_x) / window_width - 1.0f,
+            1.0f - (2.0f * (float)this->last_mouse_position_y) / window_height};
+}
