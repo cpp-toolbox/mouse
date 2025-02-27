@@ -21,13 +21,22 @@
  * \author cuppajoeman
  * \date 2024
  */
-std::tuple<double, double> Mouse::get_yaw_pitch_deltas(double mouse_position_x, double mouse_position_y) {
+std::tuple<double, double> Mouse::get_yaw_pitch_deltas(double mouse_position_x, double mouse_position_y,
+                                                       double senstivity_override) {
+
+    double requested_sens;
+
+    if (senstivity_override != -1) {
+        requested_sens = senstivity_override;
+    } else {
+        requested_sens = user_sensitivity;
+    }
 
     double change_in_yaw_angle = this->sensitivity_scale * (this->last_mouse_position_x - mouse_position_x);
     double change_in_pitch_angle = this->sensitivity_scale * (this->last_mouse_position_y - mouse_position_y);
 
-    change_in_yaw_angle *= user_sensitivity;
-    change_in_pitch_angle *= user_sensitivity;
+    change_in_yaw_angle *= requested_sens;
+    change_in_pitch_angle *= requested_sens;
 
     std::tuple yaw_pitch_deltas = {change_in_yaw_angle, change_in_pitch_angle};
 
