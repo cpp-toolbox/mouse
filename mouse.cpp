@@ -1,26 +1,6 @@
 #include "mouse.hpp"
 #include <tuple>
 
-/**
- * \brief Get delta angles based on mouse
- *
- * \details Take in absolute mouse positions and turn them into delta angles wrt yaw and pitch
- *
- * \note In radians tau = 2 * pi ~= 6.28 represents a full rotation, and on average we can assume that a a player
- * usually wants to rotate their view angle by theta := tau/4 ~= 1.57, also note that delta mouse positions are coming
- * in at (probably) a rate of at least 60Hz, which means that if a player wants to rotate their view by theta in one
- * second they must at least be producing deltas of size theta/60 = 0.0261.
- *
- * On average it seems that most mice produce deltas of size TODO, which are much greater than this value, and a general
- * rule of thumb is that to produce good delta angles, we should scale down our delta by 1000x
- *
- * \param mouse_position_x the current mouse x position
- * \param mouse_position_y the current mouse y position
- * \return a tuple t such that t1 is the change in yaw angle, and t2 is the change in pitch angle
- *
- * \author cuppajoeman
- * \date 2024
- */
 std::tuple<double, double> Mouse::get_yaw_pitch_deltas(double mouse_position_x, double mouse_position_y,
                                                        double senstivity_override) {
 
