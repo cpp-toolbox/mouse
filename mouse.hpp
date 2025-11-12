@@ -16,6 +16,8 @@ class Mouse {
     /// @brief the sensitivity used when computing
     double user_sensitivity = 1;
     double sensitivity_scale = 0.001;
+    // NOTE: this might not always be synchronized with the actual current mouse position because sometimes you'll pause
+    // the mouse eg you want to freeze a players camera and so you don't call get_yaw_pitch_deltas.
     double last_mouse_position_x = 0.0, last_mouse_position_y = 0.0;
 
     /**
@@ -35,6 +37,9 @@ class Mouse {
      *
      * On average it seems that most mice produce deltas of size TODO, which are much greater than this value, and a
      * general rule of thumb is that to produce good delta angles, we should scale down our delta by 1000x
+     *
+     *
+     * @note after this function terminates lmpx, lmpy are set to the mpx, mpy that came in during the update
      *
      * @param mouse_position_x the current mouse x position
      * @param mouse_position_y the current mouse y position
